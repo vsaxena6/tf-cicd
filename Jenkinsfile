@@ -1,5 +1,3 @@
-#!/usr/bin/groovy
-
 pipeline{
     agent any 
     tools {
@@ -12,11 +10,11 @@ pipeline{
     }
     stages {
  
-    stage('Git Checkout') {
-        steps {
-        checkout scm 
+        stage('Git Checkout') {
+            steps {
+                    checkout scm 
+                    }
         }
-    }
 
 
     stage('Login to Azure') {
