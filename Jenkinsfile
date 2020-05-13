@@ -10,14 +10,14 @@ pipeline{
     }
     stages {
  
-        stage('Git Checkout') {
+        stage('GitCheckout'){
             steps {
                     checkout scm 
                     }
         }
 
 
-        stage('Login to Azure') {
+        stage('LogintoAzure'){
         steps {
                 azureCLI commands: [[exportVariablesString: '', script: 'az login --service-principal -u "$ARM_CLIENT_ID" -p "$ARM_CLIENT_SECRET" --tenant "$ARM_TENANT_ID"']], principalCredentialId: 'Jenkins'
 
@@ -25,8 +25,8 @@ pipeline{
         }
     }
     
-        stage('Terraform Init') {
-        steps {
+        stage('TerraformInit'){
+            steps {
 
     withCredentials([azureServicePrincipal(
     credentialsId: 'Jenkins',
@@ -50,7 +50,7 @@ pipeline{
         }
     }
 
-        stage('Terraform Plan') {
+        stage('TerraformPlan'){
             steps {
 
     withCredentials([azureServicePrincipal(
@@ -70,7 +70,7 @@ pipeline{
         }
     }
 
-        stage('Waiting for Approval') {
+        stage('Waiting for Approval'){
 
             timeout(time: 10, unit: 'MINUTES') {
                 input (message: "Deploy the infrastructure?")
@@ -79,7 +79,7 @@ pipeline{
         }
     
 
-        stage('Terraform Apply') {
+        stage('TerraformApply'){
             steps {
         
     withCredentials([azureServicePrincipal(
