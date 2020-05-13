@@ -10,14 +10,14 @@ pipeline{
     }
     stages {
  
-        stage('GitCheckout'){
+        stage('Git Checkout'){
             steps {
                     checkout scm 
                     }
         }
     
     
-        stage('TerraformInit'){
+        stage('Terraform Init'){
             steps {
 
                     withCredentials([azureServicePrincipal(
@@ -37,7 +37,7 @@ pipeline{
                     }
     }
 
-        stage('TerraformPlan'){
+        stage('Terraform Plan'){
             steps {
 
                     withCredentials([azureServicePrincipal(
@@ -67,7 +67,7 @@ pipeline{
         }
     
 
-        stage('TerraformApply'){
+        stage('Terraform Apply'){
             steps {
         
                     withCredentials([azureServicePrincipal(
