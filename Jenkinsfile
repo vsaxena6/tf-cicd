@@ -39,12 +39,7 @@ pipeline{
                         sh """
                                 
                         echo "Initialising Terraform"
-                        terraform init -no-color \
-                                    -backend-config="resource_group_name=Jenkins" \
-                                    -backend-config="storage_account_name=tfbackend2020" \
-                                    -backend-config="container_name=tfremote" \
-                                    -backend-config="key=terraform.tfstate" \
-                                    -backend-config="access_key=$ARM_ACCESS_KEY"
+                        terraform init -no-color -backend-config="access_key=$ARM_ACCESS_KEY"
                         """
                             }
                     }
