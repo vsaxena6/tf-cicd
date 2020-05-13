@@ -29,10 +29,6 @@ provider "azurerm" {
     }
 }
 
-resource "azurerm_resource_group" "rg" {
-    name        =       terraform.workspace == "default" ? "devrg" : "prodrg"
-    location    =       "South India"
-}
 
 
 
