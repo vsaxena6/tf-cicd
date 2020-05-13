@@ -23,7 +23,7 @@ pipeline{
 
             }
         }
-    }
+    
     
         stage('TerraformInit'){
             steps {
@@ -74,6 +74,7 @@ pipeline{
             steps {
                 timeout(time: 10, unit: 'MINUTES') {
                     input (message: "Deploy the infrastructure?")
+                }
             }
         
         }
