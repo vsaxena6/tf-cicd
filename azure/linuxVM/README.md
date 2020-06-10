@@ -18,15 +18,6 @@
 
 > Notice that in this module, we are using a **Prefix** variable. We can use it to append to all resources for names.
 
-## Prerequisites
-
-Click [Here](https://github.com/collabnix/terraform/blob/master/beginners/azure/README.md) to know the process of initial set up.
-
-## Steps
-
-- *$ cd beginners/azure/linuxVM* 
-
-> Make sure you are in this directory. This is the directory from where we run terraform commands.
 
 ## Changes you need to make before execution
 

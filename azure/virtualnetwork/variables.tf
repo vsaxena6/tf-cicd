@@ -8,7 +8,7 @@
 variable "resource_group_name" {
     description =   "Name of the resource group"
     type        =   string
-    default     =   "Collabnix-RG"
+    default     =   "Jenkins-RG"
 }
 
 variable "location" {
@@ -20,7 +20,7 @@ variable "location" {
 variable "virtual_network_name" {
     description =   "Name of the virtual network"
     type        =   string
-    default     =   "Collabnix-Vnet"
+    default     =   "Jenkins-Vnet"
 }
 
 variable "vnet_address_range" {

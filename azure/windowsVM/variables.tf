@@ -2,41 +2,20 @@
 # Windows 10 VM - Variables
 #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
 
-# Service Principal Variables
-
-variable "client_id" {
-    description =   "Client ID (APP ID) of the application"
-    type        =   string
-}
-
-variable "client_secret" {
-    description =   "Client Secret (Password) of the application"
-    type        =   string
-}
-
-variable "subscription_id" {
-    description =   "Subscription ID"
-    type        =   string
-}
-
-variable "tenant_id" {
-    description =   "Tenant I   D"
-    type        =   string
-}
 
 # Prefix and Tags
 
 variable "prefix" {
     description =   "Prefix to append to all resource names"
     type        =   string
-    default     =   "collabnix"
+    default     =   "jenkins"
 }
 
 variable "tags" {
     description =   "Resouce tags"
     type        =   map(string)
     default     =   {
-        "project"       =   "Collabnix"
+        "author"        =   "Vamsi"
         "deployed_with" =   "Terraform"
     }
 }
