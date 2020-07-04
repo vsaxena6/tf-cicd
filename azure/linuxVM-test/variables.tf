@@ -1,15 +1,8 @@
 #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
-# Windows 10 VM - Variables
+# Linux VM - Variables
 #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
 
-
-# Prefix and Tags
-
-variable "prefix" {
-    description =   "Prefix to append to all resource names"
-    type        =   string
-    default     =   "Test"
-}
+#Tags
 
 variable "tags" {
     description =   "Resouce tags"
@@ -20,27 +13,6 @@ variable "tags" {
     }
 }
 
-# Resource Group
-
-variable "location" {
-    description =   "Location of the resource group"
-    type        =   string
-    default     =   "East US"
-}
-
-# Vnet and Subnet
-
-variable "vnet_address_range" {
-    description =   "IP Range of the virtual network"
-    type        =   string
-    default     =   "10.0.0.0/16"
-}
-
-variable "subnet_address_range" {
-    description =   "IP Range of the virtual network"
-    type        =   string
-    default     =   "10.0.1.0/24"
-}
 
 # Public IP and NIC Allocation Method
 
@@ -62,13 +34,13 @@ variable "virtual_machine_size" {
 variable "computer_name" {
     description =   "Computer name"
     type        =   string
-    default     =   "Win10vm"
+    default     =   "Linuxvm"
 }
 
 variable "admin_username" {
     description =   "Username to login to the VM"
     type        =   string
-    default     =   "winadmin"
+    default     =   "linuxadmin"
 }
 
 variable "admin_password" {
@@ -86,21 +58,21 @@ variable "os_disk_storage_account_type" {
 }
 
 variable "os_disk_size_gb" {
-    default     =       128
+    default     =       64
 }
 
 variable "publisher" {
-    default         =       "MicrosoftWindowsDesktop"
+    default     =       "Canonical"
 }
 
 variable "offer" {
-    default         =       "Windows-10"
+    default     =       "UbuntuServer"
 }
 
 variable "sku" {
-    default         =       "rs5-pro"
+    default     =       "16.04-LTS"
 }
 
 variable "vm_image_version" {
-    default         =       "latest"
+    default     =       "latest"
 }

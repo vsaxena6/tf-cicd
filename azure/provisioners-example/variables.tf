@@ -1,14 +1,13 @@
 #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
-# Windows 10 VM - Variables
+# Linux VM - Variables
 #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
-
 
 # Prefix and Tags
 
 variable "prefix" {
     description =   "Prefix to append to all resource names"
     type        =   string
-    default     =   "Test"
+    default     =   "Terraform"
 }
 
 variable "tags" {
@@ -62,13 +61,13 @@ variable "virtual_machine_size" {
 variable "computer_name" {
     description =   "Computer name"
     type        =   string
-    default     =   "Win10vm"
+    default     =   "Linuxvm"
 }
 
 variable "admin_username" {
     description =   "Username to login to the VM"
     type        =   string
-    default     =   "winadmin"
+    default     =   "linuxadmin"
 }
 
 variable "admin_password" {
@@ -77,30 +76,38 @@ variable "admin_password" {
     default     =   "P@$$w0rD2020*"
 }
 
-variable "os_disk_caching" {
-    default     =       "ReadWrite"
+variable "os_disk" {
+    description =   "Os Disk Details"
+    type        =   object({
+        name    =   string
+        caching =   string
+        storage_account_type =  string
+        size    = number
+    })
+
+    default     =   {
+        name                 =   "linuxvm-disk"
+        caching              =   "ReadWrite"
+        storage_account_type =   "StandardSSD_LRS"
+        size                 =   64
+    }
 }
 
-variable "os_disk_storage_account_type" {
-    default     =       "StandardSSD_LRS"
+
+variable "os_image" {
+    description     =   "OS image details"
+    type        =       object({
+        publisher   =   string
+        offer       =   string
+        sku         =   string
+        version     =   string})
+    
+    default         =       {
+        publisher   =   "Canonical"
+        offer       =   "UbuntuServer"
+        sku         =   "16.04-LTS"
+        version     =   "latest"
+    }
 }
 
-variable "os_disk_size_gb" {
-    default     =       128
-}
 
-variable "publisher" {
-    default         =       "MicrosoftWindowsDesktop"
-}
-
-variable "offer" {
-    default         =       "Windows-10"
-}
-
-variable "sku" {
-    default         =       "rs5-pro"
-}
-
-variable "vm_image_version" {
-    default         =       "latest"
-}
