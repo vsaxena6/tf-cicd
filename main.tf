@@ -28,15 +28,15 @@ provider "azurerm" {
     }
 }
 
-module "provisioners" {
-    source  =   "./azure/provisioners-example"
-}
+// module "provisioners" {
+//     source  =   "./azure/provisioners-example"
+// }
 
 // module "winvm" {
 //     source = "./azure/windowsVM"
 // }
 
-// module "linuxvm" {
-//     source  =   "./azure/linuxVM-test"
-// }
+module "linuxvm" {
+    source  =   "./azure/linuxVM-test"
+}
 
