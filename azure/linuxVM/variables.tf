@@ -7,7 +7,7 @@
 variable "prefix" {
     description =   "Prefix to append to all resource names"
     type        =   string
-    default     =   "Jenkins"
+    default     =   "Test1"
 }
 
 variable "tags" {

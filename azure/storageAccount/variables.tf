@@ -1,69 +1,57 @@
 #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#
-#*   Storage account with Network Rules - Variables    *#
+#*   Storage account - Variables                       *#
 #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#
 
-# Prefix and Tags
+# Service Principal Variables
 
-variable "prefix" {
-    description =   "Prefix to append to all resource names"
+variable "client_id" {
+    description =   "Client ID (APP ID) of the application"
     type        =   string
-    default     =   "jenkins"
 }
 
-variable "tags" {
-    description =   "Resouce tags"
-    type        =   map(string)
-    default     =   {
-        "author"        =   "Vamsi"
-        "deployed_with" =   "Terraform"
-    }
+variable "client_secret" {
+    description =   "Client Secret (Password) of the application"
+    type        =   string
+}
+
+variable "subscription_id" {
+    description =   "Subscription ID"
+    type        =   string
+}
+
+variable "tenant_id" {
+    description =   "Tenant ID"
+    type        =   string
 }
 
 # Resource Group
 
-variable "location" {
-    description =   "Location of the resource group"
-    type        =   string
-    default     =   "East US"
+variable "rgVars" {
+    description =   "Resource group variables"
+    type        =   map(string)
+    default     =   {
+        "name"      =   "Storage-Rg"
+        "location"  =   "East US"    
+    }
 }
 
-# Vnet and Subnet
-
-variable "vnet_address_range" {
-    description =   "IP Range of the virtual network"
-    type        =   string
-    default     =   "10.0.0.0/16"
-}
-
-variable "subnet_address_range" {
-    description =   "IP Range of the virtual network"
-    type        =   string
-    default     =   "10.0.1.0/24"
-}
 
 # Storage account
 
+
+variable "saCount" {
+    default     =   2
+}
+
 variable "saVars" {
-    description  =  "Variables for Storage account"
+    description  =  "Variables for Storage accounts and containers"
     type         =  map(string)
     default      =  {
-        "name"                          =    "vamsisa"
-        "account_kind"                  =    "StorageV2"
         "account_tier"                  =    "Standard"
-        "access_tier"                   =    "Hot"
         "account_replication_type"      =    "LRS"
-        "default_action"                =    "Deny"
-        "ip_rules"                      =    "<IP_ADDRESS>"
-        "bypass"                        =    "None"
+        "container_name"                =    "diagnostics"
+        "container_access_type"         =    "private"
     }
 }
 
-variable "blobs" {
-    description     =       "Files to upload to the container"
-    type            =       map(string)
-    default         =       {
-        "index.html"    =   "./index.html"
-        "404.html"      =   "./404.html"
-    }
-}
 
