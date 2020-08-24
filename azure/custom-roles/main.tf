@@ -8,7 +8,7 @@ data "azurerm_subscription" "primary" {}
 
 resource "azurerm_role_definition" "custom" {
     name                    =       "Custom role for Users"
-    scope                   =       "/subscriptions/fbb5d319-cf63-46d2-8172-6d25507c4d57/resourceGroups/Test1-rg"
+    scope                   =       "/subscriptions/xxx-xxx-xxxxxx/resourceGroups/Test1-rg"
     description             =       "Custom Role for Users to restrict access"
 
     permissions {

@@ -1,21 +1,21 @@
 #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
-# Create a Linux VM 
+# Create a Linux VM in an existing RG and VNET
 #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
 
 data "azurerm_resource_group" "rg" {
-    name        =   "Test-rg"
+    name        =   "Jenkins"
 }
 
 
 data "azurerm_virtual_network" "vnet" {
-    name    =   "Test-vnet"
-    resource_group_name =   data.azurerm_resource_group.rg.name
+    name                    =   "Test-vnet"
+    resource_group_name     =   data.azurerm_resource_group.rg.name
 }
 
 data "azurerm_subnet" "web" {
-    name    =   "Test-web-subnet"
-    virtual_network_name   =    data.azurerm_virtual_network.vnet.name
-    resource_group_name    =    data.azurerm_resource_group.rg.name
+    name                    =   "Test-web-subnet"
+    virtual_network_name    =    data.azurerm_virtual_network.vnet.name
+    resource_group_name     =    data.azurerm_resource_group.rg.name
 }
 
 

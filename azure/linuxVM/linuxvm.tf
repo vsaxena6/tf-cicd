@@ -2,6 +2,32 @@
 # Create a Linux VM 
 #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
 
+#
+# - Terraform Block
+#
+
+terraform {
+    required_providers {
+        azurerm = {
+            version =   ">= 2.20"
+            source  =   "hashicorp/azurerm"
+        }
+    }
+}
+
+#
+# - Provider Block
+#
+
+provider "azurerm" {
+    client_id       =   var.client_id
+    client_secret   =   var.client_secret
+    subscription_id =   var.subscription_id
+    tenant_id       =   var.tenant_id
+    
+    features {}
+}
+
 
 #
 # - Create a Resource Group
@@ -54,7 +80,7 @@ resource "azurerm_network_security_group" "nsg" {
     protocol                    =       "Tcp"
     source_port_range           =       "*"
     destination_port_range      =       22
-    source_address_prefix       =       "124.123.30.157" 
+    source_address_prefix       =       "124.123.188.61" 
     destination_address_prefix  =       "*"
     
     }
@@ -76,11 +102,11 @@ resource "azurerm_subnet_network_security_group_association" "subnet-nsg" {
 #
 
 resource "azurerm_public_ip" "pip" {
-    name                            =     "${var.prefix}-linuxvm-public-ip"
-    resource_group_name             =     azurerm_resource_group.rg.name
-    location                        =     azurerm_resource_group.rg.location
-    allocation_method               =     var.allocation_method[0]
-    tags                            =     var.tags
+    name                              =   "${var.prefix}-linuxvm-public-ip"
+    resource_group_name               =   azurerm_resource_group.rg.name
+    location                          =   azurerm_resource_group.rg.location
+    allocation_method                 =   var.allocation_method[0]
+    tags                              =   var.tags
 }
 
 #
@@ -134,3 +160,22 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
 }
 
+
+#
+# - Run Custom scripts on the virtual machine using Azure Custom Script VM Extension resource
+#
+
+resource "azurerm_virtual_machine_extension" "vmext" {
+  name                               =   "LinuxVM-RunScripts"
+  virtual_machine_id                 =   azurerm_linux_virtual_machine.vm.id
+  publisher                          =   "Microsoft.Azure.Extensions"
+  type                               =   "CustomScript"
+  type_handler_version               =   "2.0"
+
+  settings = <<SETTINGS
+    {
+        "commandToExecute"           :  "apt-get -y update && apt-get install -y apache2"
+    }
+SETTINGS
+
+}
